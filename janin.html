@@ -1,479 +1,64 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<title>HALU TV</title>
-
-<style>
-
-body {
-
-  background-color: black;
-
-  color: white;
-
-  font-family: sans-serif;
-
-  margin: 0;
-
-  padding: 0;
-
-}
-
-.container {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-}
-
-.header {
-
-  background-color: #222;
-
-  padding: 10px;
-
-  text-align: center;
-
-}
-
-.video {
-
-  position: relative;
-
-  width: 80%;
-
-  height: 400px;
-
-  margin: 10px 0;
-
-}
-
-.video-player {
-
-  position: absolute;
-
-  top: 50%;
-
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-
-  width: 80px;
-
-  height: 80px;
-
-  background-color: white;
-
-  border-radius: 50%;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  cursor: pointer;
-
-}
-
-.controls {
-
-  display: flex;
-
-  justify-content: space-around;
-
-  width: 80%;
-
-  margin: 10px 0;
-
-}
-
-.control-button {
-
-  background-color: #333;
-
-  border: none;
-
-  padding: 10px 15px;
-
-  border-radius: 5px;
-
-  cursor: pointer;
-
-  font-size: 16px;
-
-}
-
-.content {
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  width: 80%;
-
-  margin: 10px 0;
-
-}
-
-.section-title {
-
-  font-size: 24px;
-
-  font-weight: bold;
-
-  margin-bottom: 10px;
-
-}
-
-.section-content {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  width: 100%;
-
-  padding: 10px;
-
-  background-color: #333;
-
-  border-radius: 5px;
-
-}
-
-.section-item {
-
-  display: flex;
-
-  align-items: center;
-
-  flex-direction: column;
-
-  text-align: center;
-
-  width: 20%;
-
-  padding: 10px;
-
-}
-
-.section-item img {
-
-  width: 50px;
-
-  height: 50px;
-
-  margin-bottom: 5px;
-
-}
-
-.button {
-
-  background-color: #4CAF50;
-
-  border: none;
-
-  color: white;
-
-  padding: 10px 20px;
-
-  text-align: center;
-
-  text-decoration: none;
-
-  display: inline-block;
-
-  font-size: 16px;
-
-  margin: 4px 2px;
-
-  border-radius: 5px;
-
-  cursor: pointer;
-
-}
-
-.button:hover {
-
-  background-color: #45a049;
-
-}
-
-.time {
-
-  font-size: 18px;
-
-  font-weight: bold;
-
-  margin-bottom: 5px;
-
-}
-
-.status {
-
-  font-size: 16px;
-
-  color: #888;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container">
-
-  <div class="header">
-
-    <h1>HALU TV</h1>
-
-  </div>
-
-  <div class="video">
-
-    <div class="video-player" onclick="playVideo()">
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-
-        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
-
-      </svg>
-
-    </div>
-
-    <div class="controls">
-
-      <button class="control-button">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
-
-          <path d="M11.5 12.5a.5.5 0 0 1-.5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5h-5zM6.717 3.55A.5.5 0 0 1 7.5.5h5a.5.5 0 0 1 .5.5v5.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-5.5z"/>
-
-        </svg>
-
-      </button>
-
-      <button class="control-button">LANGSUNG</button>
-
-      <button class="control-button">CC</button>
-
-      <button class="control-button">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-
-          <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-
-        </svg>
-
-      </button>
-
-      <button class="control-button">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fullscreen" viewBox="0 0 16 16">
-
-          <path d="M1.5 1.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-13zm14.5 1a.5.5 0 0 1 .5-.5v-13a.5.5 0 0 1-.5-.5h-13a.5.5 0 0 1-.5.5v13a.5.5 0 0 1 .5.5h13z"/>
-
-        </svg>
-
-      </button>
-
-      <button class="control-button">
-
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fullscreen-exit-down" viewBox="0 0 16 16">
-
-          <path d="M1.5 1.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-13zm14.5 1a.5.5 0 0 1 .5-.5v-13a.5.5 0 0 1-.5-.5h-13a.5.5 0 0 1-.5.5v13a.5.5 0 0 1 .5.5h13z"/>
-
-          <path d="M8 9.438l-4.196-2.382a.5.5 0 0 0-.784 0L.5 7.5a.5.5 0 0 0 0 .784l4.196 2.382a.5.5 0 0 0 .784 0L8 9.438z"/>
-
-        </svg>
-
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="content">
-
-    <h2>_U TV - MALAYSIA STREAM FANS PAGE ~ SPORTS TV AND E</h2>
-
-    <div class="buttons">
-
-      <button class="button">Chatroom</button>
-
-      <button class="button">Donate</button>
-
-      <button class="button">Apk</button>
-
-      <button class="button">Notice</button>
-
-    </div>
-
-    <div class="section">
-
-      <h3 class="section-title">TV EVENT</h3>
-
-      <div class="section-content">
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>08:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">SPOTV 1</button>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-        </div>
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>13:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-          <button class="button">COURT 4</button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <h3 class="section-title">TV SPORT</h3>
-
-      <div class="section-content">
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>08:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">SPOTV 1</button>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-        </div>
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>13:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-          <button class="button">COURT 4</button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="section">
-
-      <h3 class="section-title">TV SHOWS</h3>
-
-      <div class="section-content">
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>08:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">SPOTV 1</button>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-        </div>
-
-        <div class="section-item">
-
-          <img src="https://www.badmintonplanet.com/images/logo/bwf-logo.png" alt="BWF Logo">
-
-          <h4 class="time">12 Sept 2024<br>13:00</h4>
-
-          <p class="status">LIVE NOW</p>
-
-          <button class="button">COURT 1</button>
-
-          <button class="button">COURT 2</button>
-
-          <button class="button">COURT 3</button>
-
-          <button class="button">COURT 4</button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+<div class="section active" id="events">
+<div id="eventsContainer"><div class="event">
+<div class="event2">
+BADMINTON HONGKONG OPEN 
+<button class="copy-button" onclick="window.location.reload();">
+<svg class="icon"><use xlink:href="#icon-copy"></use></svg>
+</button>
 </div>
-
-<script>
-
-function playVideo() {
-
-  // Replace with your video URL
-
-  window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
-
-}
-
-</script>
-
-</body>
-
-</html>
+<div class="kotak">
+<div class="left">
+<img class="logo1" src="https://play-lh.googleusercontent.com/GWyLN52g9L8tev3cg-fW9Dhq-rc0ULPRvVzmiCj2P2H0s9ihBW9tPd6oHfn5qlWAH9s">
+<div class="team">Hongkong Open</div>
+</div>
+<div class="center">
+<div class="date1" data-target-date="2024-09-10">12 Sept 2024</div>
+<div class="wak">08:00</div>
+<div class="jam jam1" data-target-time="LIVE">LIVE NOW</div>
+</div>
+<div class="right">
+<img class="logo1" src="https://play-lh.googleusercontent.com/GWyLN52g9L8tev3cg-fW9Dhq-rc0ULPRvVzmiCj2P2H0s9ihBW9tPd6oHfn5qlWAH9s">
+<div class="team">Hongkong Open</div>
+</div>
+</div>
+<div class="buttons-container">
+<div class="buttons-row">
+<button class="button" onclick="changeVideo('/2024/07/go5.html?id=spo1')">SPOTV 1</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://mobilelive-ds.ysp.cctv.cn/2024928601_hd.m3u8')">COURT 1</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://mobilelive-ds.ysp.cctv.cn/2024928801_hd.m3u8')">COURT 2</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://mobilelive-ds.ysp.cctv.cn/2024929001_hd.m3u8')">COURT 3</button>
+</div>  
+  
+</div>
+</div><div class="event">
+<div class="event2">
+BADMINTON VIETNAM OPEN 
+<button class="copy-button" onclick="window.location.reload();">
+<svg class="icon"><use xlink:href="#icon-copy"></use></svg>
+</button>
+</div>
+<div class="kotak">
+<div class="left">
+<img class="logo1" src="https://play-lh.googleusercontent.com/GWyLN52g9L8tev3cg-fW9Dhq-rc0ULPRvVzmiCj2P2H0s9ihBW9tPd6oHfn5qlWAH9s">
+<div class="team">Vietnam Open</div>
+</div>
+<div class="center">
+<div class="date1" data-target-date="2024-09-10">12 Sept 2024</div>
+<div class="wak">13:00</div>
+<div class="jam jam1" data-target-time="LIVE">LIVE NOW</div>
+</div>
+<div class="right">
+<img class="logo1" src="https://play-lh.googleusercontent.com/GWyLN52g9L8tev3cg-fW9Dhq-rc0ULPRvVzmiCj2P2H0s9ihBW9tPd6oHfn5qlWAH9s">
+<div class="team">Vietnam Open</div>
+</div>
+</div>
+<div class="buttons-container">
+<div class="buttons-row">
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://lebo.huminbird.cn/live/ballbar_28260.m3u8')">COURT 1</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://lebo.huminbird.cn/live/ballbar_11760.m3u8')">COURT 2</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://lebo.huminbird.cn/live/ballbar_22360.m3u8')">COURT 3</button>
+<button class="button" onclick="changeVideo('/2024/07/go2.html?file=https://lebo.huminbird.cn/live/ballbar_29320.m3u8')">COURT 4</button>
+</div>  
+  
+</div>
+</div></div></div>
